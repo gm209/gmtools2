@@ -1,4 +1,18 @@
+#' apply.mapping.pack
+#'
+#' Function to apply mapping packs created by label encoder and target encoder
+#' @param data   a data.frame or coercible object
+#' @param mapping.pack  A mapping pack that tells the mapper how to assign values
+#' @keywords     apply mapping pack
+#' @export
+#' @examples
+#' 
+
+
 apply.mapping.pack <- function(data,mapping.pack){
+
+  ## Check input make its coercible
+  if(class(data)[1] != 'data.frame') data <- as.data.frame(data)
   
   ## Set up column lists
   cols.to.map <- unlist(lapply(mapping.pack,function(i){i[[1]]}))

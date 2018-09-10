@@ -1,10 +1,6 @@
 ##load packages
   require(data.table)
   require(dplyr)
-
-##load data
-  ksnap <- fread(input = 'C:/Users/George/Documents/Kaggle/Polish_Bankruptcy/Data/01_csv_data/train_data.csv')
-  ksnap <- ksnap[complete.cases(ksnap)]
   
 ##Find Correlated Vars
   check.multi.colin <- function(matrix,thresh=0.9){
@@ -42,12 +38,12 @@
   }
   
 ##Function tests
-  mc <- check.multi.colin(matrix = ksnap,thresh = 0.7)
-  length(unique(mc))==length(mc)
+  # mc <- check.multi.colin(matrix = ksnap,thresh = 0.7)
+  # length(unique(mc))==length(mc)
   
-  rd <- remove.multi.colin(data = as.data.frame(ksnap),rem.list = mc)
-  ncol(rd)==length(names(ksnap))-length(mc)
-  sum(mc %in% names(rd))==0
+  # rd <- remove.multi.colin(data = as.data.frame(ksnap),rem.list = mc)
+  # ncol(rd)==length(names(ksnap))-length(mc)
+  # sum(mc %in% names(rd))==0
   
   
   
