@@ -358,7 +358,6 @@
               corMat <- data.frame(names = x,cor = cor(x = encode.trn[,x],y = encode.trn$CLM_FREQ)) %>%
                 dplyr::arrange(-abs(cor)) %>%
                 mutate(cumPercCor = cumsum(abs(cor)) / sum(abs(cor)))
-              plot(corMat$cumPercCor)
               x <- corMat %>% head(cor.num) %>% select(names) %>% unlist() %>% as.character()
             } else if(method == "colin"){
               x <- gmtools::remove_colinear_features(df = encode.trn,features = x,threshold = threshold)$included_features     
@@ -380,7 +379,7 @@
         # Save results ------------------------------------------------------------
           fwrite(x = modelRun$results,file = paste0('./run_results.csv'))
           h2o.shutdown(prompt = FALSE)
-          Sys.sleep(time = 20) ## need to give the cluster a change to terminate
+          Sys.sleep(time = 20) ## need to give the cluster a chance to terminate
      
       },error = function(e) {e})
     }        
