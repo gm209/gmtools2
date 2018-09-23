@@ -72,7 +72,7 @@
         }  
         
         # Set workspace ----------------------------------------------------------
-          setwd('C:\\Users\\George\\Documents\\Kaggle\\PipelineAutoClaim\\SomeExpirements')
+          setwd('SOME_DIRECTORY')
         
         # Setup some custom functions ---------------------------------------------
           evaluate.models <- function(x,y,w=NULL,offset=NULL,train.data,foldCol=NULL,xgbParams=NULL,h2o_gbmParams=NULL,h2o_glmParams=NULL,h2o_dlearnParams=NULL){
