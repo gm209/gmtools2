@@ -13,7 +13,7 @@ make.label.encode.pack  <- function(features,data){
   mapping.pack <- lapply(features,function(f){
     vals <- unique(data[,f])
     mapping <- data.frame(in.val = vals,out.val = seq(1,length(vals)))
-    default.val <- mapping[match(x = names(table(dataCar[,f]))[1],table = mapping$in.val),'out.val']
+    default.val <- mapping[match(x = names(table(data[,f]))[1],table = mapping$in.val),'out.val']
     return(list(variable = f,mapping = mapping,default = default.val))
   })
   return(mapping.pack)

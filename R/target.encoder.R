@@ -1,4 +1,4 @@
-#' make.label.encode.pack
+#' make.target.encode.pack
 #'
 #' Function to create label encoder mapping packs
 #' @param features A list of features to create mappings for
@@ -8,7 +8,7 @@
 #' @param min_samples_per_leaf an scalar representing the smallest credible class
 #' @param smoothing a scalar showing the degree of smoothing to apply to the data
 #' @param noise_level random noise level to be injected (UNIMPLEMENTED) 
-#' @keywords    make label encoder pack
+#' @keywords    make target encoder pack
 #' @import data.table
 #' @export
 #' @examples
@@ -16,11 +16,16 @@
 
 ## function def
 make.target.encode.pack  <- function(features,data,y,w=NULL,min_samples_per_leaf=1,smoothing=1,noise_level=0){
+
+  ## Deal with missing weights
+  if(is.null(w)) w <- rep(1,nrow(data)) else w <- data[,w]
+
   mapping.pack <- lapply(features,function(f){
-    
+
+    ## message for run time
+    message(which(features == f),'/',length(features))
+        
     ## Create df working
-    if(is.null(w)) w <- rep(1,nrow(data)) else w <- data[,w]
-    
     dfWorking <- data.frame(feat = data[,f],y = data[,y],w = w)
     
     ## Aggregate table  
